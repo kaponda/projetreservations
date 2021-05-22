@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche d'une localitie{% endblock %}
+
+{% block body %}
+    <h1>{{ localitie.postalcode }} {{ localitie.locality }}</h1>
+   <nav><a href="{{ path('localities') }}">Retour à l'index</a></nav>
+{% endblock %}
