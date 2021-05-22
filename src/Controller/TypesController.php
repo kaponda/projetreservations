@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use; App\Entity\Types;
+use App\Entity\Types;
 class TypesController extends AbstractController
 {
     /**
@@ -23,14 +23,14 @@ class TypesController extends AbstractController
         ]);
     }
 	    /**
-     * @Route("/type/{id}", name="type_show")
+     * @Route("/types/{id}", name="type_show")
      */
     public function show($id)
     {
         $repository = $this->getDoctrine()->getRepository(Types::class);
         $type = $repository->find($id);
 
-        return $this->render('type/show.html.twig', [
+        return $this->render('types/show.html.twig', [
             'type' => $type,
         ]);
     }
