@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +15,7 @@ class LocalitiesController extends AbstractController
         $localities = $repository->findAll();
 
         return $this->render('localities/index.html.twig', [
-                        'localities' => $localities,
+            'localities' => $localities,
             'resource' => 'localities',
 
         ]);
