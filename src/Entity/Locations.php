@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 use App\Repository\LocationsRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -52,6 +54,16 @@ class Locations
      * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $phone;
+	/**
+     * @ORM\OneToMany(targetEntity="App\Entity\Show", mappedBy="location")
+     */
+    private $shows;
+
+    public function __construct()
+    {
+        $this->shows = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -129,4 +141,35 @@ class Locations
 
         return $this;
     }
+	    /**
+     * @return Collection|Show[]
+     */
+    public function getShows(): Collection
+    {
+        return $this->shows;
+    }
+
+    public function addShow(Show $show): self
+    {
+        if (!$this->shows->contains($show)) {
+            $this->shows[] = $show;
+            $show->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShow(Show $show): self
+    {
+        if ($this->shows->contains($show)) {
+            $this->shows->removeElement($show);
+            // set the owning side to null (unless already changed)
+            if ($show->getLocation() === $this) {
+                $show->setLocation(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
