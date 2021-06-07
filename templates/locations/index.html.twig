@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des lieux{% endblock %}
+
+{% block body %}
+    <h1>Liste des {{ resource }}</h1>
+
+    <ul>
+    {% for location in locations %}
+        <li>{{ location.designation }}
+            {% if location.website %}
+            - <a href="{{ path('location_show', { id: location.id }) }}">{{ location.website }}</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
