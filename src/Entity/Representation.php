@@ -19,7 +19,7 @@ class Representation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=show::class, inversedBy="representations")
+     * @ORM\ManyToOne(targetEntity=Show::class, inversedBy="representations")
      * @ORM\JoinColumn(nullable=false, name="show_id", referencedColumnName="id", onDelete="RESTRICT")
      */
     private $the_show;
