@@ -27,13 +27,13 @@ class ArtistsTypes
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Artists::class)
+     * @ORM\ManyToOne(targetEntity=Artists::class, inversedBy="type")
      * @ORM\JoinColumn(nullable=false)
      */
     private $artist;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Types::class)
+     * @ORM\ManyToOne(targetEntity=Types::class, inversedBy="artist")
      * @ORM\JoinColumn(nullable=false)
      */
     private $type;

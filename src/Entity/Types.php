@@ -24,13 +24,11 @@ class Types
      * @ORM\Column(type="string", length=60)
      */
     private $type;
-
     /**
-     * @ORM\OneToMany(targetEntity=Artists::class, mappedBy="types", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\ArtistsTypes", mappedBy="type", orphanRemoval=true)
      */
-    private $artists;
 
-    
+   
 
     public function getId(): ?int
     {

@@ -4,12 +4,11 @@
 
 {% block body %}
     <h1>{{ artist.firstname }} {{ artist.lastname }}</h1>
-   <nav><a href="{{ path('artists') }}">Retour à l'index</a></nav>
-       <h2>Liste des types</h2>
+    
+        <h2>Liste des types</h2>
     <ul>
-    {% for type in artist.types  %}
-        <li>{{ type.type }}</li>
+    {% for artistType in artist.types  %}
+        <li>{{ artistType.types.type }}</li>
     {% endfor %}
-    </ul>
 
 {% endblock %}

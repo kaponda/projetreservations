@@ -29,22 +29,21 @@ class Artists
      * @ORM\Column(type="string", length=60)
      */
     private $lastname;
-
     /**
-     * @ORM\OneToMany(targetEntity=Types::class, mappedBy="artists", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\ArtistsTypes", mappedBy="artist", orphanRemoval=true)
      */
-    private $types;
 
-    public function __construct()
-    {
-        $this->types = new ArrayCollection();
-    }
+    
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
+     public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
     
     public function setFirstname(string $firstname): self
     {
@@ -65,5 +64,5 @@ class Artists
         return $this;
     }
 
-    
+
 }
