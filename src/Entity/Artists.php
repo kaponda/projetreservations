@@ -31,7 +31,7 @@ class Artists
     private $lastname;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Types::class, inversedBy="artists")
+     * @ORM\OneToMany(targetEntity=Types::class, mappedBy="artists", orphanRemoval=true)
      */
     private $types;
 
@@ -45,11 +45,7 @@ class Artists
         return $this->id;
     }
 
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
-
+    
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
@@ -69,30 +65,5 @@ class Artists
         return $this;
     }
 
-    /**
-     * @return Collection|Types[]
-     */
-    public function getTypes(): Collection
-    {
-        return $this->types;
-    }
-
-    public function addType(Types $type): self
-    {
-        if (!$this->types->contains($type)) {
-            $this->types[] = $type;
-        }
-
-        return $this;
-    }
-
-    public function removeType(Types $type): self
-    {
-                if ($this->types->contains($type)) {
-            $this->types->removeElement($type);
-        }
-
-
-        return $this;
-    }
+    
 }
