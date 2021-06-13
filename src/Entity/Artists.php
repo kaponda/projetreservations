@@ -33,7 +33,7 @@ class Artists
      * @ORM\OneToMany(targetEntity="App\Entity\ArtistsTypes", mappedBy="artist", orphanRemoval=true)
      */
 
-    private $artists;
+    private $types;
 	
     public function __construct()
     {
@@ -76,7 +76,7 @@ class Artists
         return $this->types;
     }
 
-    public function addType(ArtistType $type): self
+    public function addType(ArtistsTypes $type): self
     {
         if (!$this->types->contains($type)) {
             $this->types[] = $type;
@@ -86,7 +86,7 @@ class Artists
         return $this;
     }
 
-    public function removeType(ArtistType $type): self
+    public function removeType(ArtistsTypes $type): self
     {
         if ($this->types->contains($type)) {
             $this->types->removeElement($type);

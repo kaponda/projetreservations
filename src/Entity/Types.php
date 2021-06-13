@@ -27,7 +27,7 @@ class Types
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ArtistsTypes", mappedBy="type", orphanRemoval=true)
      */
-    private $types;
+    private $artists;
 	
     public function __construct()
     {
@@ -51,15 +51,21 @@ class Types
 
         return $this;
     }
-     /**
-     * @return Collection|ArtistType[]
+     /artist->setType(null);
+            }
+        }
+
+        return $this;
+    }
+    /**
+     * @return Collection|ArtistsTypes[]
      */
     public function getArtists(): Collection
     {
         return $this->artists;
     }
 
-    public function addArtist(ArtistType $artist): self
+    public function addArtist(ArtistsTypes $artist): self
     {
         if (!$this->artists->contains($artist)) {
             $this->artists[] = $artist;
@@ -69,7 +75,7 @@ class Types
         return $this;
     }
 
-    public function removeArtist(ArtistType $artist): self
+    public function removeArtist(ArtistsTypes $artist): self
     {
         if ($this->artists->contains($artist)) {
             $this->artists->removeElement($artist);
@@ -77,10 +83,6 @@ class Types
             if ($artist->getType() === $this) {
                 $artist->setType(null);
             }
-        }
-
-        return $this;
-    }
 
     
 }
