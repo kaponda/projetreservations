@@ -51,12 +51,7 @@ class Types
 
         return $this;
     }
-     /artist->setType(null);
-            }
-        }
 
-        return $this;
-    }
     /**
      * @return Collection|ArtistsTypes[]
      */
