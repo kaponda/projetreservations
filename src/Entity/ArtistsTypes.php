@@ -91,7 +91,7 @@ class ArtistsTypes
     {
         if (!$this->shows->contains($show)) {
             $this->shows[] = $show;
-            $show->addArtistType($this);
+            $show->addArtistsTypes($this);
         }
 
         return $this;
@@ -100,7 +100,7 @@ class ArtistsTypes
     public function removeShow(Show $show): self
     {
         if ($this->shows->removeElement($show)) {
-            $show->removeArtistType($this);
+            $show->removeArtistsTypes($this);
         }
 
         return $this;
