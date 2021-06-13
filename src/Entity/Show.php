@@ -159,9 +159,15 @@ class Show
      */
     private $representations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ArtistsTypes::class, inversedBy="shows")
+     */
+    private $artistTypes;
+
     public function __construct()
     {
         $this->representations = new ArrayCollection();
+        $this->artistTypes = new ArrayCollection();
     }
 
     /**
@@ -190,6 +196,30 @@ class Show
                 $representation->setTheShow(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ArtistsTypes[]
+     */
+    public function getArtistTypes(): Collection
+    {
+        return $this->artistTypes;
+    }
+
+    public function addArtistType(ArtistsTypes $artistType): self
+    {
+        if (!$this->artistTypes->contains($artistType)) {
+            $this->artistTypes[] = $artistType;
+        }
+
+        return $this;
+    }
+
+    public function removeArtistType(ArtistsTypes $artistType): self
+    {
+        $this->artistTypes->removeElement($artistType);
 
         return $this;
     }
