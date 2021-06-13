@@ -52,7 +52,7 @@ class Types
         return $this;
     }
 
-    /**
+   /**
      * @return Collection|ArtistsTypes[]
      */
     public function getArtists(): Collection
@@ -78,6 +78,10 @@ class Types
             if ($artist->getType() === $this) {
                 $artist->setType(null);
             }
+        }
+
+        return $this;
+    }
 
     
 }

@@ -69,7 +69,7 @@ class Artists
         return $this;
     }
     /**
-     * @return Collection|ArtistType[]
+     * @return Collection|ArtistsTypes[]
      */
     public function getTypes(): Collection
     {
