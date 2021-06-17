@@ -12,10 +12,10 @@ class UserFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
 		        $users = [
- ['login'=> 'dan','password'=>'1111','firstname'=>'Daniel','lastname'=>'kabo','email'=>' ','langue'=>'fr','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],
- ['login'=> 'jul','password'=>'2222','firstname'=>'julien','lastname'=>'Marco','email'=>' ','langue'=>'an','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],          
- ['login'=> 'stef','password'=>'3333','firstname'=>'stephane','lastname'=>'kapone','email'=>' ','langue'=>'an','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],       
- ['login'=> 'pie','password'=>'4444','firstname'=>'pierre','lastname'=>'Michel','email'=>' ','langue'=>'bl','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],		
+ ['login'=> 'dan','password'=>'1111','firstname'=>'daniel','lastname'=>'kabo','email'=>' ','langue'=>'fr','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],
+ ['login'=> 'jul','password'=>'2222','firstname'=>'julien','lastname'=>'marco','email'=>' ','langue'=>'an','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],          
+ ['login'=> 'stef','password'=>'3333','firstname'=>'stephane','lastname'=>'capone','email'=>' ','langue'=>'an','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],       
+ ['login'=> 'pie','password'=>'4444','firstname'=>'pierre','lastname'=>'michel','email'=>' ','langue'=>'bl','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],		
  ['login'=> 'ala','password'=>'5555','firstname'=>'alain','lastname'=>'wetu','email'=>' ','langue'=>'es','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],		
  ['login'=> 'sop','password'=>'6666','firstname'=>'sophie','lastname'=>'garbot','email'=>' ','langue'=>'po','created_at'=>' ','updated_at'=>' ','email_verified_at'=>' ','remember_token'=>' '],	
 		];
@@ -35,6 +35,11 @@ class UserFixtures extends Fixture
             
 			
             $manager->persist($user);
+			$this->addReference(
+                    $record['firstname']."-".$record['lastname'],
+                    $user
+            );
+
         }
 
 
