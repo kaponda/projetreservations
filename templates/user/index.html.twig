@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Liste des {{ resource }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.firstname }}</td>
+                <td>
+	    <a href="{{ path('user_show', { id: user.id }) }}">{{ user.lastname }}</a>
+	</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
