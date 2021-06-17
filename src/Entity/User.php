@@ -6,7 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use DateTimeInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
@@ -50,12 +50,12 @@ class User
     private $langue;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=30)
      */
     private $created_at;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=30)
      */
     private $updated_at;
 
@@ -67,7 +67,7 @@ class User
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $rememember_token;
+    private $remember_token;
 
     /**
      * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="users")
@@ -156,24 +156,24 @@ class User
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?string
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(string $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?string
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(string $updated_at): self
     {
         $this->updated_at = $updated_at;
 
@@ -192,14 +192,14 @@ class User
         return $this;
     }
 
-    public function getRemememberToken(): ?string
+    public function getRememberToken(): ?string
     {
-        return $this->rememember_token;
+        return $this->remember_token;
     }
 
-    public function setRemememberToken(string $rememember_token): self
+    public function setRememberToken(string $remember_token): self
     {
-        $this->rememember_token = $rememember_token;
+        $this->rememember_token = $remember_token;
 
         return $this;
     }
