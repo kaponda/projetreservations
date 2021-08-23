@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\RepresentationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=RepresentationRepository::class)
  * @ORM\Table(name="representations")
@@ -34,6 +37,16 @@ class Representation
 	 * @ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="RESTRICT")
      */
     private $the_location;
+
+    /**
+     * @ORM\OneToMany(targetEntity=RepresentationUser::class, mappedBy="representation")
+     */
+    private $reservation;
+
+    public function __construct()
+    {
+        $this->reservation = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -72,6 +85,36 @@ class Representation
     public function setTheLocation(?Locations $the_location): self
     {
         $this->the_location = $the_location;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RepresentationUser[]
+     */
+    public function getReservation(): Collection
+    {
+        return $this->reservation;
+    }
+
+    public function addReservation(RepresentationUser $reservation): self
+    {
+        if (!$this->reservation->contains($reservation)) {
+            $this->reservation[] = $reservation;
+            $reservation->setRepresentation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(RepresentationUser $reservation): self
+    {
+        if ($this->reservation->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getRepresentation() === $this) {
+                $reservation->setRepresentation(null);
+            }
+        }
 
         return $this;
     }

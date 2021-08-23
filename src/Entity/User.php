@@ -6,7 +6,9 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 use DateTimeInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
@@ -74,9 +76,15 @@ class User
      */
     private $roles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=RepresentationUser::class, mappedBy="user")
+     */
+    private $reservation;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();
+        $this->reservation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,6 +232,36 @@ class User
     public function removeRole(Roles $role): self
     {
         $this->roles->removeElement($role);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RepresentationUser[]
+     */
+    public function getReservation(): Collection
+    {
+        return $this->reservation;
+    }
+
+    public function addReservation(RepresentationUser $reservation): self
+    {
+        if (!$this->reservation->contains($reservation)) {
+            $this->reservation[] = $reservation;
+            $reservation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(RepresentationUser $reservation): self
+    {
+        if ($this->reservation->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getUser() === $this) {
+                $reservation->setUser(null);
+            }
+        }
 
         return $this;
     }
