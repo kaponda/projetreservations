@@ -11,6 +11,12 @@ use DateTimeInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="user")
+ * @UniqueEntity(
+ *      fields="login",
+ *      message="This login is already taken."
+ * )
+
  */
 class User
 {
@@ -22,7 +28,7 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=30,unique=true )
      */
     private $login;
 

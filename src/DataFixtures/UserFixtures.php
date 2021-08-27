@@ -23,7 +23,7 @@ class UserFixtures extends Fixture
         foreach ($users as $record) {
             $user = new User();
 			$user->setLogin($record['login']);
-			$user->setPassword($record['password']);
+			$user->setPassword(password_hash($record['password'], PASSWORD_BCRYPT));
             $user->setFirstname($record['firstname']);
             $user->setLastname($record['lastname']);
 			$user->setEmail($record['email']);
