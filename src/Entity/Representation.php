@@ -43,9 +43,15 @@ class Representation
      */
     private $reservation;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="presentation", orphanRemoval=true)
+     */
+    private $reservations;
+
     public function __construct()
     {
         $this->reservation = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,5 +123,13 @@ class Representation
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
     }
 }
