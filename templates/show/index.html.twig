@@ -7,7 +7,7 @@
 
     <ul>
     {% for show in shows %}
-        <li>{{ show.title }}
+        <li><a href="{{ path('show_show', { id: show.id }) }}">{{ show.title }}
             {% if show.bookable %}
             <span>{{ show.price }} €</span>
             {% endif %}
@@ -16,7 +16,7 @@
             {% elseif show.representations|length>1 %}
             - <span>{{ show.representations|length }} représentations</span>
             {% else %}
-            - <em>aucune représentation</em>
+            - <em>aucune représentation</em></a>
             {% endif %}
 
         </li>

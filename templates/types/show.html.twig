@@ -5,7 +5,7 @@
 
 {% block body %}
     <h1>{{ type.type }}</h1>
-    
+ <nav><a href="{{ path('types') }}">Retour à l'index</a></nav>   
     <h2>Liste des artistes</h2>
     <ul>
     {% for artistType in type.artists %}

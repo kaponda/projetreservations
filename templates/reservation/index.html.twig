@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des reservatios{% endblock %}
+
+{% block body %}
+    <h1>Liste des {{ resource }}</h1>
+
+     <ul>
+    {% for reservation in reservations %}
+	    
+        <li>{{ reservation.places }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

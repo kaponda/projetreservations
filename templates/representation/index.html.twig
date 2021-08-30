@@ -7,11 +7,11 @@
 
     <ul>
     {% for representation in representations %}
-        <li>{{ representation.theShow.title }}
+        <li><a href="{{ path('representation_show', { id: representation.id }) }}">{{ representation.theShow.title }}
             {% if representation.theLocation %}
             - <span>{{ representation.theLocation.designation }}</span>
             {% endif %}
-            - <datetime>{{ representation.schedule|date('d-m-Y H:i') }}</datetime>
+            - <datetime>{{ representation.schedule|date('d-m-Y H:i') }}</datetime></a>
         </li>
     {% endfor %}
     </ul>
